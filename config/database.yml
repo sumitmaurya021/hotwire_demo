@@ -2,23 +2,16 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV["DATABASE_URL"] %>
 
 development:
   <<: *default
-  database: hotwire_demo_development
-  username: postgres
-  password: root
+  database: myapp_development
 
 test:
   <<: *default
-  database: hotwire_demo_test
-  username: postgres
-  password: root
+  database: myapp_test
 
-production: &production
+production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
-
-cable:
-  <<: *production
-  database: myapp_cable_production
+  url: <%= ENV["DATABASE_URL"] %>
