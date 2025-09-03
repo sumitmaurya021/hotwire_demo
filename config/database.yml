@@ -15,3 +15,8 @@ test:
 production:
   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
+
+# Solid Queue ka database config
+queue:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
