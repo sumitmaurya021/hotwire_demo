@@ -15,10 +15,10 @@ test:
   username: postgres
   password: root
 
-production:
+production: &production
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  
+
 cable:
   <<: *production
   database: myapp_cable_production
