@@ -6,10 +6,11 @@ FROM ruby:$RUBY_VERSION-slim AS base
 # Set Rails app working directory
 WORKDIR /rails
 
-# Install base OS packages
+# Install base OS packages + Node.js
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-      curl libjemalloc2 libvips postgresql-client build-essential git libpq-dev libyaml-dev pkg-config nodejs yarn && \
+      curl libjemalloc2 libvips postgresql-client build-essential git libpq-dev libyaml-dev pkg-config nodejs npm && \
+    npm install -g yarn && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives
 
 # Set environment variables
