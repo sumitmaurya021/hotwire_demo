@@ -12,6 +12,8 @@ development:
 test:
   <<: *default
   database: hotwire_demo_test
+  username: postgres
+  password: root
 
 production:
   <<: *default
