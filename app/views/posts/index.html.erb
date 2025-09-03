@@ -1,0 +1,31 @@
+<% content_for :title, "Posts" %>
+
+<div class="w-full">
+  <% if notice.present? %>
+    <p id="notice" class="py-2 px-3 bg-green-50 mb-5 text-green-600 font-medium rounded-md inline-block">
+      <%= notice %>
+    </p>
+  <% end %>
+
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="font-bold text-4xl">Posts</h1>
+    <%= link_to "New Post",
+      new_post_path,
+      data: { turbo_frame: "modal" },
+      class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-medium shadow-sm" %>
+  </div>
+
+  <!-- Turbo Frame for posts list -->
+  <%= turbo_frame_tag "posts" do %>
+    <div class="divide-y divide-gray-200 space-y-5">
+      <% if @posts.any? %>
+        <%= render @posts %>
+      <% else %>
+        <p class="text-center my-10 text-gray-500">No posts found.</p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <!-- Turbo Frame for modal -->
+  <turbo-frame id="modal"></turbo-frame>
+</div>
