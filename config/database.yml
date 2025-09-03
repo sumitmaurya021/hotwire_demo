@@ -22,3 +22,7 @@ production: &production
 cable:
   <<: *production
   database: myapp_cable_production
+
+queue:
+<<: *production
+database: <%= ENV['QUEUE_DATABASE_URL'] || 'myapp_queue_production' %>
